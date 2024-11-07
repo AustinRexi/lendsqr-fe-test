@@ -20,27 +20,23 @@ import navdropicon from "../../assets/icons/navdropicon.svg";
 
 import TextField from "../input/TextField";
 import { getSideBarMenu } from "../../router/Index";
+import { User } from "../../types/users.types";
 
 const { Text } = Typography;
 const { useBreakpoint } = Grid;
-
-interface User {
-  Email: string;
-  Password: string;
-}
 
 const Navbar: React.FC = () => {
   const screens = useBreakpoint();
   const menuItems = useMemo(() => getSideBarMenu(), []);
 
-  const [email, setEmail] = useState<string>("");
+  const [userDetails, setUser] = useState<User | null>(null);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
     if (storedUser) {
       const user: User = JSON.parse(storedUser);
-      setEmail(user.Email);
+      setUser(user);
     }
   }, []);
 
@@ -92,7 +88,8 @@ const Navbar: React.FC = () => {
                     color: "#213F7D",
                   }}
                 >
-                  {email} <img src={navdropicon} alt="dropdown" />
+                  {userDetails?.username}{" "}
+                  <img src={navdropicon} alt="dropdown" />
                 </Text>
               </Row>
             </Col>

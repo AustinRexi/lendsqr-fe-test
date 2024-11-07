@@ -3,6 +3,7 @@ import { Form, Input, Button, Typography } from "antd";
 import { EyeInvisibleOutlined, EyeTwoTone } from "@ant-design/icons";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { handleLogin } from "../../services/http/auth";
 const { Title, Text, Link } = Typography;
 
 export const Login: React.FC = () => {
@@ -11,16 +12,16 @@ export const Login: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const onFinish = (values: any) => {
-    if (email.trim() || password.trim()) {
-      const user = { Email: email, Password: password };
+  const onFinish = async (values: any) => {
+    try {
+      const user = await handleLogin(email, password);
+      console.log(user, "user");
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/customers/users");
-    } else {
+    } catch (err) {
       alert("Invalid credentials");
     }
-    console.log("Received values of form: ", values);
   };
 
   return (
@@ -36,7 +37,7 @@ export const Login: React.FC = () => {
         <Title
           level={2}
           style={{
-            fontFamily: "Avenir Next",
+            // fontFamily: "Avenir Next",
             fontSize: "40px",
             fontWeight: 700,
             lineHeight: "54.64px",
@@ -50,7 +51,7 @@ export const Login: React.FC = () => {
         <Text
           type="secondary"
           style={{
-            fontFamily: "Avenir Next",
+            // fontFamily: "Avenir Next",
             fontSize: "20px",
             fontWeight: 400,
             lineHeight: "27.32px",

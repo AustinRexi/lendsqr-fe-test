@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Avatar, Typography, Tabs, Card, Row, Col } from "antd";
 import { StarOutlined } from "@ant-design/icons";
 import { EmptyPage } from "../../pages/EmptyPage";
-import UserProfile from "./UserProfile";
+import UserProfile from "../../component/shared/UserProfile";
 
 const { Title, Text } = Typography;
 const { TabPane } = Tabs;

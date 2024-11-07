@@ -1,15 +1,27 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import StatisticCard from "../../component/shared/StatisticCard";
 import userprofileimage from "../../assets/images/userprofileimage.svg";
 import lineIcon from "../../assets/icons/lineicon.svg";
 import backicon from "../../assets/icons/backicon.svg";
 import { Row, Col } from "antd";
 import Buttons from "../../component/input/Buttons";
+import { getUserById } from "../../services/http/users";
+import { User } from "../../types/users.types";
+import StatisticCard from "../../component/shared/StatisticCard";
 
 const UserDetails: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: any }>();
   const navigate = useNavigate();
+
+  const [userDetails, setUserDetails] = useState<User>();
+
+  useEffect(() => {
+    async function handleGetUsers() {
+      const userData: any = await getUserById(id);
+      setUserDetails(userData);
+    }
+    handleGetUsers();
+  }, [userDetails, id]);
 
   const handleClick = () => {
     navigate("/customers/users");
@@ -27,7 +39,7 @@ const UserDetails: React.FC = () => {
           lineHeight: "18.77px",
           color: "#545F7D",
         }}
-        onClick={handleClick} // Moved onClick outside of style
+        onClick={handleClick}
       >
         <img src={backicon} alt="back" /> Back to users
       </div>
@@ -78,7 +90,7 @@ const UserDetails: React.FC = () => {
       </Row>
       <StatisticCard
         userImage={userprofileimage}
-        userName="Grace Effiom"
+        userName={userDetails?.username as any}
         userID="LSQF587g60"
         userTier={1}
         accountBalance="₦200,000.00"

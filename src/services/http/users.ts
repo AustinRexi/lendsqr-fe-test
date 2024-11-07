@@ -1,8 +1,14 @@
+import { User } from "../../types/users.types";
 import { server } from "../db";
 
-const usersTables = "users";
+export const usersTables = "users";
 
-export const getAllUsers = () => {
-  const allUsers = server.getTableData(usersTables);
+export const getAllUsers = async (): Promise<User[]> => {
+  const allUsers: User[] = await server.getTableData(usersTables);
   return allUsers;
+};
+
+export const getUserById = async (id: string): Promise<User | null> => {
+  const allUsers: User[] = await server.getTableData(usersTables);
+  return allUsers.find((user: User) => user.id === id) || null;
 };
