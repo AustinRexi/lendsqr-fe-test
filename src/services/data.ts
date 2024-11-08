@@ -91,4 +91,14 @@ export const userData: User[] = [
     dateJoined: "May 15, 2020 10:00 AM",
     status: "Inactive",
   },
+  {
+    password: "bigpanda",
+    id: "10",
+    organization: "Lendsqr",
+    username: "Austin Rex",
+    email: "austinrex@lendsqr.com",
+    phoneNumber: "07068961393",
+    dateJoined: "May 15, 2020 10:00 AM",
+    status: "Inactive",
+  },
 ];

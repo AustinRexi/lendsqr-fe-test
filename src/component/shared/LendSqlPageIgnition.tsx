@@ -57,8 +57,8 @@ const LendSqlPageIgnition: React.FC<PageIgnitionProps> = ({
         </div>
       </Col>
 
-      <Col span={10} md={0} lg={10}></Col>
-      <Col span={6} xs={0} md={10} lg={4}>
+      <Col xs={0} md={0} lg={10}></Col>
+      <Col xs={5} md={10} lg={4}>
         <Pagination
           showSizeChanger={false}
           current={currentPage}
