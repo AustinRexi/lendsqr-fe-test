@@ -1,19 +1,68 @@
-import React from "react";
-import { Table, Grid } from "antd";
+import React, { useState, useEffect } from "react";
+import { Table } from "antd";
 
 interface TABLE {
   data: any[];
   columns: any[];
 }
-const LendSqlTable: React.FC<TABLE> = ({ data, columns }) => {
-  const screens = Grid.useBreakpoint();
 
-  columns = columns.map((col) => ({
+const LendSqlTable: React.FC<TABLE> = ({ data, columns }) => {
+  const [tableStyle, setTableStyle] = useState({
+    width: "100%",
+    fontSize: "14px",
+    fontWeight: 500,
+    lineHeight: "17px",
+    marginTop: 30,
+  });
+
+  // Function to update styles based on screen size
+  const updateTableStyle = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 576) {
+      // Extra-small screens
+      setTableStyle({
+        width: "100%",
+        fontSize: "10px",
+        fontWeight: 500,
+        lineHeight: "17px",
+        marginTop: 20,
+      });
+    } else if (screenWidth <= 768) {
+      // Medium screens
+      setTableStyle({
+        width: "100%",
+        fontSize: "12px",
+        fontWeight: 500,
+        lineHeight: "17px",
+        marginTop: 30,
+      });
+    } else {
+      setTableStyle({
+        width: "100%",
+        fontSize: "14px",
+        // height: "640px",
+        fontWeight: 500,
+        lineHeight: "17px",
+        marginTop: 30,
+      });
+    }
+  };
+
+  // Add a resize event listener
+  useEffect(() => {
+    updateTableStyle(); // Initial check
+    window.addEventListener("resize", updateTableStyle);
+    return () => {
+      window.removeEventListener("resize", updateTableStyle);
+    };
+  }, []);
+
+  // Adjust columns style for responsive design
+  const responsiveColumns = columns.map((col) => ({
     ...col,
     onHeaderCell: () => ({
       style: {
         backgroundColor: "#ffffff",
-
         fontSize: "12px",
         fontWeight: 600,
         lineHeight: "14.08px",
@@ -33,28 +82,13 @@ const LendSqlTable: React.FC<TABLE> = ({ data, columns }) => {
   }));
 
   return (
-    <>
-      {screens.md ? (
-        <Table
-          columns={columns as any}
-          dataSource={data}
-          pagination={false}
-          style={{
-            width: "1037px",
-            height: "640px",
-
-            fontSize: "14px",
-            fontWeight: 500,
-            lineHeight: "17px",
-            marginTop: 30,
-          }}
-        />
-      ) : (
-        <div style={{ marginTop: 20 }}>
-          No table available on small screens.
-        </div>
-      )}
-    </>
+    <Table
+      columns={responsiveColumns}
+      dataSource={data}
+      pagination={false}
+      style={tableStyle}
+      scroll={{ x: true }} // Enable horizontal scroll for overflow on small screens
+    />
   );
 };
 

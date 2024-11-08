@@ -15,7 +15,7 @@ export const Login: React.FC = () => {
   const onFinish = async (values: any) => {
     try {
       const user = await handleLogin(email, password);
-      console.log(user, "user");
+
       localStorage.setItem("isLoggedIn", "true");
       localStorage.setItem("user", JSON.stringify(user));
       navigate("/customers/users");
