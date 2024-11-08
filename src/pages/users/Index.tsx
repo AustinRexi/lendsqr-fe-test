@@ -199,7 +199,7 @@ export const Users: FC = () => {
   return (
     <>
       <Row>
-        <Col span={22}>
+        <Col md={22} lg={22} xs={18}>
           <h2
             style={{
               fontSize: "24px",
@@ -212,7 +212,7 @@ export const Users: FC = () => {
           </h2>
         </Col>
 
-        <Col xs={0} md={2} lg={2}>
+        <Col xs={2} md={2} lg={2}>
           {/* Add onClick to toggle the modal */}
           <Buttons text="Filter" onClick={handleOpenModal} />
         </Col>
