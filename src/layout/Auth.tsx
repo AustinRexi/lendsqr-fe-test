@@ -22,7 +22,7 @@ const Auth: React.FC = () => {
   return (
     <>
       <Row style={{ height: "900px", width: "100%", padding: 20 }}>
-        <Col xs={12}>
+        <Col xs={0}>
           <Layout style={{ minHeight: "100vh", backgroundColor: "#ffffff" }}>
             <img
               src={logo}
@@ -39,7 +39,7 @@ const Auth: React.FC = () => {
             />
           </Layout>
         </Col>
-        <Col xs={12}>
+        <Col xs={24}>
           <Outlet />
         </Col>
       </Row>
