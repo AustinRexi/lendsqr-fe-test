@@ -183,9 +183,7 @@ const UserProfile: React.FC<UserProfileProps> = ({
           <Title level={5} style={titleStyle}>
             Instagram:
           </Title>
-          <Text style={textStyle}>
-            {"@" + userName.toLowerCase().replace(/ /g, "_")}
-          </Text>
+          <Text style={textStyle}>@{userName}</Text>
         </Col>
       </Row>
 
