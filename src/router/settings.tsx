@@ -37,7 +37,7 @@ export const settingsRoute = {
       meta: {
         isMenu: true,
         icon: auditicon,
-        label: "Audit",
+        label: "Audit Logs",
       },
     },
     {
