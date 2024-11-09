@@ -48,7 +48,7 @@ const Cards: React.FC = () => {
             style={{
               marginTop: 8,
               minWidth: "200px",
-              textAlign: "center",
+
               minHeight: "160px",
               border: "0px 0px 0px 0px solid #213F7D0F",
             }}
