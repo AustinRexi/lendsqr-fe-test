@@ -19,6 +19,7 @@ const UserDetails: React.FC = () => {
     async function handleGetUsers() {
       const userData: any = await getUserById(id);
       setUserDetails(userData);
+      console.log(userDetails, "email");
     }
     handleGetUsers();
   }, [userDetails, id]);
@@ -26,7 +27,6 @@ const UserDetails: React.FC = () => {
   const handleClick = () => {
     navigate("/customers/users");
   };
-
   return (
     <>
       <div
@@ -90,7 +90,9 @@ const UserDetails: React.FC = () => {
       </Row>
       <StatisticCard
         userImage={userprofileimage}
+        email={userDetails?.email as any}
         userName={userDetails?.username as any}
+        phoneNumber={userDetails?.phoneNumber as any}
         userID="LSQF587g60"
         userTier={1}
         accountBalance="₦200,000.00"

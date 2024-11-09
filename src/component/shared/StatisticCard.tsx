@@ -10,8 +10,10 @@ const { TabPane } = Tabs;
 interface StatisticCardProps {
   userImage: string;
   userName: string;
+  email: string;
   userID: string;
   userTier: number;
+  phoneNumber: number;
   accountBalance: string;
   accountDetails: string;
   lineIcon: string;
@@ -21,6 +23,8 @@ interface StatisticCardProps {
 
 const StatisticCard: React.FC<StatisticCardProps> = ({
   userImage,
+  phoneNumber,
+  email,
   userName,
   userID,
   userTier,
@@ -90,7 +94,13 @@ const StatisticCard: React.FC<StatisticCardProps> = ({
         }}
       >
         <TabPane tab="General Details" key="1" style={textStyles}>
-          {activeTab === "1" && <UserProfile userName={userName} />}{" "}
+          {activeTab === "1" && (
+            <UserProfile
+              userName={userName}
+              phoneNumber={phoneNumber}
+              email={email}
+            />
+          )}{" "}
           {/* Render UserProfile */}
         </TabPane>
         <TabPane tab="Documents" key="2" style={textStyles}>

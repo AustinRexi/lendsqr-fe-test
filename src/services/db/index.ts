@@ -18,12 +18,10 @@ class LendSqrServer {
   }
 
   private getDbData(): string {
-    console.log("2");
     return (localStorage.getItem(this.dbName) || "") as string;
   }
 
   public async getTableData(tableKey: string) {
-    console.log("1");
     await this.simulateNetworkDelay();
     const db = this.getDbData() || "{}";
     console.log(db, "db");

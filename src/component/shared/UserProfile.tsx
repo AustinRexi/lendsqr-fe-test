@@ -5,6 +5,8 @@ const { Title, Text } = Typography;
 
 interface UserProfileProps {
   userName: string;
+  phoneNumber: number;
+  email: string;
 }
 
 const titleStyle = {
@@ -19,10 +21,14 @@ const textStyle = {
   fontWeight: 500,
   lineHeight: "18.77px",
   color: "#545F7D",
-  whiteSpace: "nowrap",
+  whiteSpace: "wrap",
 };
 
-const UserProfile: React.FC<UserProfileProps> = ({ userName }) => {
+const UserProfile: React.FC<UserProfileProps> = ({
+  userName,
+  phoneNumber,
+  email,
+}) => {
   return (
     <Card style={{ marginTop: 30 }}>
       <Title
@@ -48,13 +54,13 @@ const UserProfile: React.FC<UserProfileProps> = ({ userName }) => {
           <Title level={5} style={titleStyle}>
             Phone Number
           </Title>
-          <Text style={textStyle}>07060780922</Text>
+          <Text style={textStyle}>{phoneNumber}</Text>
         </Col>
         <Col xs={24} sm={12} md={9} lg={4}>
           <Title level={5} style={titleStyle}>
             EMAIL ADDRESS
           </Title>
-          <Text style={textStyle}>grace@gmail.com</Text>
+          <Text style={textStyle}>{email}</Text>
         </Col>
         <Col xs={24} sm={12} md={9} lg={4}>
           <Title level={5} style={titleStyle}>
@@ -131,7 +137,7 @@ const UserProfile: React.FC<UserProfileProps> = ({ userName }) => {
           <Title level={5} style={titleStyle}>
             OFFICIAL EMAIL
           </Title>
-          <Text style={textStyle}>grace@gmail.com</Text>
+          <Text style={textStyle}>{email}</Text>
         </Col>
         <Col xs={24} sm={12} md={9} lg={6}>
           <Title level={5} style={titleStyle}>
@@ -165,19 +171,21 @@ const UserProfile: React.FC<UserProfileProps> = ({ userName }) => {
           <Title level={5} style={titleStyle}>
             Twitter:
           </Title>
-          <Text style={textStyle}>@grace_effiom</Text>
+          <Text style={textStyle}>@{userName}</Text>
         </Col>
         <Col xs={24} sm={12} md={6} lg={6}>
           <Title level={5} style={titleStyle}>
             Facebook:
           </Title>
-          <Text style={textStyle}>Grace Effiom</Text>
+          <Text style={textStyle}>{userName}</Text>
         </Col>
         <Col xs={24} sm={12} md={6} lg={6}>
           <Title level={5} style={titleStyle}>
             Instagram:
           </Title>
-          <Text style={textStyle}>@grace_effiom</Text>
+          <Text style={textStyle}>
+            {"@" + userName.toLowerCase().replace(/ /g, "_")}
+          </Text>
         </Col>
       </Row>
 
