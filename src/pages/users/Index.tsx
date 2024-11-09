@@ -21,7 +21,6 @@ import { getAllUsers } from "../../services/http/users";
 import LendSqlPageIgnition from "../../component/shared/LendSqlPageIgnition";
 
 export const Users: FC = () => {
-  // State to control modal visibility
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
@@ -213,12 +212,10 @@ export const Users: FC = () => {
         </Col>
 
         <Col xs={2} md={2} lg={2}>
-          {/* Add onClick to toggle the modal */}
           <Buttons text="Filter" onClick={handleOpenModal} />
         </Col>
       </Row>
 
-      {/* FormModal positioned absolutely on the left */}
       {isModalVisible && (
         <div
           style={{

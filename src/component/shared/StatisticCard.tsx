@@ -83,14 +83,15 @@ const StatisticCard: React.FC<StatisticCardProps> = ({
       <Tabs
         defaultActiveKey="1"
         activeKey={activeTab} // Control the active tab
-        onChange={handleTabChange} // Handle tab change
+        onChange={handleTabChange}
         tabBarGutter={70}
         style={{
           paddingTop: 40,
         }}
       >
         <TabPane tab="General Details" key="1" style={textStyles}>
-          {activeTab === "1" && <UserProfile />} {/* Render UserProfile */}
+          {activeTab === "1" && <UserProfile userName={userName} />}{" "}
+          {/* Render UserProfile */}
         </TabPane>
         <TabPane tab="Documents" key="2" style={textStyles}>
           {activeTab === "2" && <EmptyPage />} {/* Render EmptyPage */}

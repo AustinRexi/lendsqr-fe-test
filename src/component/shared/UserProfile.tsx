@@ -3,6 +3,10 @@ import { Card, Col, Row, Typography, Divider } from "antd";
 
 const { Title, Text } = Typography;
 
+interface UserProfileProps {
+  userName: string;
+}
+
 const titleStyle = {
   fontSize: "12px",
   fontWeight: 400,
@@ -18,7 +22,7 @@ const textStyle = {
   whiteSpace: "nowrap",
 };
 
-const UserProfile: React.FC = () => {
+const UserProfile: React.FC<UserProfileProps> = ({ userName }) => {
   return (
     <Card style={{ marginTop: 30 }}>
       <Title
@@ -38,7 +42,7 @@ const UserProfile: React.FC = () => {
           <Title level={5} style={titleStyle}>
             Full Name
           </Title>
-          <Text style={textStyle}>Grace Effiom</Text>
+          <Text style={textStyle}>{userName}</Text>
         </Col>
         <Col xs={24} sm={12} md={9} lg={4}>
           <Title level={5} style={titleStyle}>
