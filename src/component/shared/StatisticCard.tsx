@@ -47,7 +47,7 @@ const StatisticCard: React.FC<StatisticCardProps> = ({
         <Col xs={0} md={0} lg={2}>
           <Avatar size={64} src={userImage} />
         </Col>
-        <Col md={5} xs={6}>
+        <Col md={5} xs={24}>
           <Title level={4} style={{ ...titleStyles }}>
             {userName}
           </Title>
@@ -76,8 +76,8 @@ const StatisticCard: React.FC<StatisticCardProps> = ({
             <img src={lineIcon} alt="" />
           </div>
         </Col>
-        <Col xs={2} md={0}></Col>
-        <Col md={4} xs={7}>
+        <Col xs={24} md={0}></Col>
+        <Col md={4} xs={24}>
           <Title level={4} style={{ ...titleStyles }}>
             {accountBalance}
           </Title>
