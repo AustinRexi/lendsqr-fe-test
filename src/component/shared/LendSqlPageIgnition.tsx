@@ -16,11 +16,12 @@ const LendSqlPageIgnition: React.FC<PageIgnitionProps> = ({
   onItemsPerPageChange,
   onPageChange,
 }) => {
-  const totalItems = 100; // Total number of items
-  const itemsPerPageOptions = [20, 50, 100]; // Page size options
+  const totalItems = 500; // Total number of items
+  const itemsPerPageOptions = [10, 20, 50, 100, 500]; // Page size options
 
   const handleItemsPerPageChange = (value: number) => {
-    onItemsPerPageChange(value); // Use the prop function to update items per page
+    onItemsPerPageChange(value);
+    console.log(value, "value");
   };
 
   return (

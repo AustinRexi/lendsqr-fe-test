@@ -17,7 +17,7 @@ import blacklistedusericon from "../../assets/icons/blacklistedusericon.svg";
 import activeusericon from "../../assets/icons/activeusericon.svg";
 import { User } from "../../types/users.types";
 import { useNavigate } from "react-router-dom";
-import { getAllUsers } from "../../services/http/users";
+import { ALL_USERS, getAllUsers } from "../../services/http/users";
 import LendSqlPageIgnition from "../../component/shared/LendSqlPageIgnition";
 
 export const Users: FC = () => {
@@ -25,16 +25,16 @@ export const Users: FC = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
-  const [allUsers, setAllUsers] = useState<User[]>([]);
+  const [allUsers, setUsersData] = useState<ALL_USERS | any>({});
 
-  async function handleGetAllUsers() {
-    const allUsersData = await getAllUsers();
-    setAllUsers(allUsersData);
+  async function handleGetUsersData(page: number, itemsToFetch: number) {
+    const allUsersData = await getAllUsers(page, itemsToFetch);
+    setUsersData(allUsersData);
   }
 
   useEffect(() => {
-    handleGetAllUsers();
-  }, []);
+    handleGetUsersData(currentPage, itemsPerPage);
+  }, [currentPage, itemsPerPage]);
 
   // Function to show the modal
   const handleOpenModal = () => {
@@ -191,10 +191,7 @@ export const Users: FC = () => {
       ),
     },
   ];
-  const paginatedUsers = allUsers.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
-  );
+
   return (
     <>
       <Row>
@@ -231,7 +228,7 @@ export const Users: FC = () => {
       <Cards />
       <Row gutter={[16, 16]}>
         <Col md={24} lg={24}>
-          <LendSqlTable columns={columns} data={paginatedUsers} />
+          <LendSqlTable columns={columns} data={allUsers?.items} />
         </Col>
         <Col md={20} lg={24}>
           <LendSqlPageIgnition
