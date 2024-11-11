@@ -24,6 +24,7 @@ class LendSqrServer {
     await this.simulateNetworkDelay();
 
     const tableData = JSON.parse(this.getDbData()) || {};
+
     return tableData[tableKey] || [];
   }
 }

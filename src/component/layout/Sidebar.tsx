@@ -9,8 +9,6 @@ const { Sider } = Layout;
 const Sidebar: React.FC = () => {
   const menuItems = useMemo(() => getSideBarMenu(), []);
 
-  console.log("menuItems", menuItems);
-
   return (
     <Sider width={250} style={{ height: "100vh", background: "#ffffff" }}>
       <Menu
