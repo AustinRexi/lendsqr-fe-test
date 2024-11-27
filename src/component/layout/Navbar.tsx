@@ -12,12 +12,12 @@ import {
 } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
 import { NavLink } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import logo from "../../assets/logos/logo.svg";
 import bellicon from "../../assets/icons/bellicon.svg";
 import profile from "../../assets/images/profileimage.svg";
 import navdropicon from "../../assets/icons/navdropicon.svg";
-
+import logout from "../../assets/icons/logouticon.svg";
 import TextField from "../input/TextField";
 import { getSideBarMenu } from "../../router/Index";
 import { User } from "../../types/users.types";
@@ -28,7 +28,7 @@ const { useBreakpoint } = Grid;
 const Navbar: React.FC = () => {
   const screens = useBreakpoint();
   const menuItems = useMemo(() => getSideBarMenu(), []);
-
+  const navigate = useNavigate();
   const [userDetails, setUser] = useState<User | null>(null);
   const [isDrawerVisible, setDrawerVisible] = useState(false);
 
@@ -42,6 +42,11 @@ const Navbar: React.FC = () => {
 
   const toggleDrawer = () => {
     setDrawerVisible(!isDrawerVisible);
+  };
+  const handleClick = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    navigate("/");
   };
 
   return (
@@ -143,6 +148,19 @@ const Navbar: React.FC = () => {
               </Menu.Item>
             )
           )}
+          <Menu.Item
+            style={{
+              fontSize: "16px",
+              fontWeight: 400,
+              lineHeight: "19px",
+              textAlign: "left",
+              color: "#213F7D",
+            }}
+            onClick={handleClick}
+          >
+            <img src={logout} alt="Log out" style={{ marginTop: 4 }} />{" "}
+            <span style={{ marginLeft: 6 }}> Logout </span>
+          </Menu.Item>
         </Menu>
       </Drawer>
     </Card>
