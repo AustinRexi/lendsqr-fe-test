@@ -3,11 +3,18 @@ import { Layout, Menu, Space } from "antd";
 import { NavLink } from "react-router-dom"; // Import NavLink
 import dropicon from "../../assets/icons/dropicon.svg";
 import { getSideBarMenu } from "../../router/Index";
-
+import logout from "../../assets/icons/logouticon.svg";
+import { useNavigate } from "react-router-dom";
 const { Sider } = Layout;
 
 const Sidebar: React.FC = () => {
   const menuItems = useMemo(() => getSideBarMenu(), []);
+  const navigate = useNavigate();
+  const handleClick = () => {
+    localStorage.removeItem("isLoggedIn");
+    localStorage.removeItem("user");
+    navigate("/");
+  };
 
   return (
     <Sider width={250} style={{ height: "100vh", background: "#ffffff" }}>
@@ -82,6 +89,19 @@ const Sidebar: React.FC = () => {
             </Menu.Item>
           )
         )}
+        <Menu.Item
+          style={{
+            fontSize: "16px",
+            fontWeight: 400,
+            lineHeight: "19px",
+            textAlign: "left",
+            color: "#213F7D",
+          }}
+          onClick={handleClick}
+        >
+          <img src={logout} alt="Log out" style={{ marginTop: 4 }} />{" "}
+          <span style={{ marginLeft: 6 }}> Logout </span>
+        </Menu.Item>
       </Menu>
     </Sider>
   );

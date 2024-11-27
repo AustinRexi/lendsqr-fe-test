@@ -194,7 +194,7 @@ export const Users: FC = () => {
 
   return (
     <>
-      <Row>
+      <Row gutter={[16, 16]}>
         <Col md={22} lg={22} xs={18}>
           <h2
             style={{

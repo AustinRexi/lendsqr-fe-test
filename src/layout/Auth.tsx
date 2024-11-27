@@ -21,7 +21,7 @@ const Auth: React.FC = () => {
   }, [navigate]);
   return (
     <>
-      <Row style={{ height: "900px", width: "100%", padding: 20 }}>
+      <Row style={{ height: "900px", width: "100%" }}>
         <Col xs={0} md={12} lg={12}>
           <Layout style={{ minHeight: "100vh", backgroundColor: "#ffffff" }}>
             <img
